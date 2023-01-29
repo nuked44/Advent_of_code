@@ -2,4 +2,4 @@
 
 Get specific day with:
 
-cargo run -- <year> <day>
+cargo run -- \<year\> \<day\>
