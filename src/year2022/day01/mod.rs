@@ -1,6 +1,4 @@
-use std::fs::File;
-use std::io::{BufReader, BufRead};
-
+use advent_of_code::read_file_lines;
 
 pub fn day01() {
     let _test_data = vec![
@@ -26,7 +24,7 @@ pub fn day01() {
     let mut max1: usize = 0;
     let mut max2: usize = 0;
     let mut max3: usize = 0;
-    for elf in _read_file_lines("./src/year2022/day01/input.txt") {
+    for elf in read_file_lines("./src/year2022/day01/input.txt") {
             if elf != "" {
             current += elf.parse::<usize>().unwrap()
         } else {
@@ -61,21 +59,4 @@ pub fn day01() {
     }
     max_total = max1 + max2 + max3;
     println!("{max_total}")
-}
-
-fn _read_file_lines(file_path: &str) -> Vec<String> {
-    let file = File::open(file_path).unwrap();
-    let reader = BufReader::new(file);
-
-    let mut lines = Vec::new();
-    for line in reader.lines() {
-        let line = line.unwrap();
-        if line.is_empty() {
-            lines.push("".to_owned());
-        } else {
-            lines.push(line);
-        }
-    }
-
-    lines
 }
