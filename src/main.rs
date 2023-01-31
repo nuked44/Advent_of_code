@@ -1,4 +1,6 @@
-use std::time::Instant;
+use advent_of_code::run;
+use std::fs;
+use std::io::prelude::*;
 
 mod year2022;
 
@@ -52,38 +54,42 @@ fn main() {
     let which_year;
     let which_day;
 
-    if args.len() > 2 {
-        if let Ok(year) = args[1].parse::<usize>(){
-            which_year = year - 2015;
+    if args.len() == 3 {
+        if args[1] != "make" {
+            if let Ok(year) = args[1].parse::<usize>(){
+                which_year = year - 2015;
+            } else {
+                println!("no valid year given");
+                std::process::exit(1);
+            }
+            if let Ok(day) = args[2].parse::<usize>(){
+                which_day = day - 1;
+            } else {
+                println!("no valid day given");
+                std::process::exit(1);
+            }
+            println!("---- {} - {} ----\n", &args[1], &args[2]);
+            run(entrys[which_year][which_day]);
         } else {
-            println!("no valid year given");
-            std::process::exit(1);
+            for i in 1..=25{
+                let path;
+                let finput;
+                if i < 10 {
+                    path = format!("./src/year{}/day0{i}", args[2]);
+                    finput = format!("pub fn day0{i}() {{\n\n}}")
+                } else {
+                    path = format!("./src/year{}/day{i}", args[2]);
+                    finput = format!("pub fn day{i}() {{\n\n}}")
+                }
+                    fs::create_dir_all(&path)
+                        .expect(format!("Failed dir {}", path).as_str());
+                    let mut file: fs::File = fs::File::create(format!("{}/mod.rs", &path))
+                        .expect(format!("Failed file {}", path).as_str());
+                    write!(&mut file, "{}", finput).expect(format!("Failed finput {}", path).as_str());
+            }
         }
-        if let Ok(day) = args[2].parse::<usize>(){
-            which_day = day - 1;
-        } else {
-            println!("no valid day given");
-            std::process::exit(1);
-        }
-
-        println!("---- {} - {} ----\n", &args[1], &args[2]);
-
-        run(entrys[which_year][which_day]);
-
-
-
     } else {
         println!("Add args <year> <day>");
         std::process::exit(1);
     }
-}
-
-fn run(func: fn()) {
-    let now = Instant::now();
-    func();
-    let elapsed = now.elapsed();
-    println!(
-        "\nCompletion time: {:6.2}ms\n",
-        elapsed.as_micros() as f64 / 1000.
-    );
 }
