@@ -1,6 +1,6 @@
 use std::{fs::File, 
     io::{BufReader, BufRead}, 
-    time::Instant};
+    time::Instant,};
 
 pub fn read_file_lines(file_path: &str) -> Vec<String> {
     let file = File::open(file_path).unwrap();

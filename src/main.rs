@@ -1,6 +1,6 @@
 use advent_of_code::run;
-use std::fs;
-use std::io::prelude::*;
+use std::{fs,
+    io::prelude::*,};
 
 mod year2022;
 
