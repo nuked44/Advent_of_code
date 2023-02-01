@@ -2,30 +2,17 @@ use advent_of_code::read_file_lines;
 
 pub fn day01() {
     let _test_data = vec![
-    "1000",
-    "2000",
-    "3000",
-    "",
-    "4000",
-    "",
-    "5000",
-    "6000",
-    "",
-    "7000",
-    "8000",
-    "9000",
-    "",
-    "10000",
+        "1000", "2000", "3000", "", "4000", "", "5000", "6000", "", "7000", "8000", "9000", "",
+        "10000",
     ];
 
     let mut current: usize = 0;
-    let max_total: usize;
     let mut temp: usize;
     let mut max1: usize = 0;
     let mut max2: usize = 0;
     let mut max3: usize = 0;
     for elf in read_file_lines("./src/year2022/day01/input.txt") {
-            if elf != "" {
+        if !elf.is_empty() {
             current += elf.parse::<usize>().unwrap()
         } else {
             if current > max3 {
@@ -57,6 +44,5 @@ pub fn day01() {
             }
         }
     }
-    max_total = max1 + max2 + max3;
-    println!("{max_total}")
+    println!("{}", max1 + max2 + max3);
 }

@@ -1,6 +1,8 @@
-use std::{fs::File, 
-    io::{BufReader, BufRead}, 
-    time::Instant,};
+use std::{
+    fs::File,
+    io::{BufRead, BufReader},
+    time::Instant,
+};
 
 pub fn read_file_lines(file_path: &str) -> Vec<String> {
     let file = File::open(file_path).unwrap();
@@ -24,5 +26,5 @@ pub fn run(func: fn()) -> f64 {
     func();
     let elapsed = now.elapsed();
 
-        elapsed.as_micros() as f64 / 1000.
+    elapsed.as_micros() as f64 / 1000.
 }
