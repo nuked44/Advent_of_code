@@ -59,16 +59,17 @@ fn main() {
     if args.len() == 3 {
         if args[1] == "make" {
             for i in 1..=25 {
-                let path;
+                let path = format!("./src/year{}", args[2]);
+                let fpath;
                 let finput = if i < 10 {
-                    path = format!("./src/year{}/day0{i}", args[2]);
+                    fpath = format!("{}/day0{i}.rs", &path);
                     format!("pub fn day0{i}() {{\n\nprint!(\"Part 1: \");\npart1();\nprint!(\"Part 2: \");\npart2();\n\n}}\n\nfn part1() {{\n\n}}\n\nfn part2() {{\n\n}}")
                 } else {
-                    path = format!("./src/year{}/day{i}", args[2]);
+                    fpath = format!("{}/day{i}.rs", &path);
                     format!("pub fn day{i}() {{\n\nprint!(\"Part 1: \");\npart1();\nprint!(\"Part 2: \");\npart2();\n\n}}\n\nfn part1() {{\n\n}}\n\nfn part2() {{\n\n}}")
                 };
                 fs::create_dir_all(&path).unwrap_or_else(|_| panic!("Failed dir {path}"));
-                let mut file: fs::File = fs::File::create(format!("{}/mod.rs", &path))
+                let mut file: fs::File = fs::File::create(format!("{fpath}"))
                     .unwrap_or_else(|_| panic!("Failed file {path}"));
                 write!(&mut file, "{finput}").unwrap_or_else(|_| panic!("Failed finput {path}"));
             }
