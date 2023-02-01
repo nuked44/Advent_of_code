@@ -1,6 +1,6 @@
 use advent_of_code::run;
 use std::{fs,
-    io::prelude::*,};
+    io::prelude::*, time::Instant,};
 
 mod year2022;
 
@@ -58,22 +58,8 @@ fn main() {
     let which_day;
 
     if args.len() == 3 {
-        if args[1] != "make" {
-            if let Ok(year) = args[1].parse::<usize>(){
-                which_year = year - 2015;
-            } else {
-                println!("no valid year given");
-                std::process::exit(1);
-            }
-            if let Ok(day) = args[2].parse::<usize>(){
-                which_day = day - 1;
-            } else {
-                println!("no valid day given");
-                std::process::exit(1);
-            }
-            println!("---- {} - {} ----\n", &args[1], &args[2]);
-            run(entrys[which_year][which_day]);
-        } else {
+        if args[1] == "make" {
+
             for i in 1..=25{
                 let path;
                 let finput;
@@ -90,9 +76,45 @@ fn main() {
                         .expect(format!("Failed file {}", path).as_str());
                     write!(&mut file, "{}", finput).expect(format!("Failed finput {}", path).as_str());
             }
+
+        } else {
+
+            if let Ok(year) = args[1].parse::<usize>(){
+                which_year = year - 2015;
+            } else {
+                println!("no valid year given");
+                std::process::exit(1);
+            }
+            if let Ok(day) = args[2].parse::<usize>(){
+                which_day = day - 1;
+            } else {
+                println!("no valid day given");
+                std::process::exit(1);
+            }
+            println!("---- {} - {} ----\n", &args[1], &args[2]);
+            println!("\nCompletion time: {:6.2}ms", run(entrys[which_year][which_day]));
+
         }
+    } else if args.len() == 2 {
+
+        if let Ok(year) = args[1].parse::<usize>(){
+            which_year = year - 2015;
+        } else {
+            println!("no valid year given");
+            std::process::exit(1);
+        }
+        let now = Instant::now();
+        for i in 0..entrys[which_year].len() {    
+            println!("---- {} - {} ----\n", &args[1], i + 1);
+            println!("\nCompletion time: {:6.2}ms", run(entrys[which_year][i]));
+        }
+        let elapsed = now.elapsed();
+        println!("\nTotal completion time: {:6.2}ms", elapsed.as_micros() as f64 / 1000.)
+
     } else {
-        println!("Add args <year> <day>");
+        println!("Add args -- <year> for whole year");
+        println!("Add args -- <year> <day> for specific day");
+        println!("Add args -- make <year> to generate templlate fo <year>");
         std::process::exit(1);
     }
 }
