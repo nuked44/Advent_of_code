@@ -25,6 +25,8 @@ fn main() {
             year2022::day01::day01,
             year2022::day02::day02,
             year2022::day03::day03,
+            /*
+            Also change year2022/mod.rs
             year2022::day04::day04,
             year2022::day05::day05,
             year2022::day06::day06,
@@ -47,6 +49,7 @@ fn main() {
             year2022::day23::day23,
             year2022::day24::day24,
             year2022::day25::day25,
+            */
             ],
     ];
 
@@ -76,10 +79,10 @@ fn main() {
                 let finput;
                 if i < 10 {
                     path = format!("./src/year{}/day0{i}", args[2]);
-                    finput = format!("pub fn day0{i}() {{\n\n}}")
+                    finput = format!("pub fn day0{i}() {{\n\nprint!(\"Part 1: \");\npart1();\nprint!(\"Part 2: \");\npart2();\n\n}}\n\nfn part1() {{\n\n}}\n\nfn part2() {{\n\n}}")
                 } else {
                     path = format!("./src/year{}/day{i}", args[2]);
-                    finput = format!("pub fn day{i}() {{\n\n}}")
+                    finput = format!("pub fn day{i}() {{\n\nprint!(\"Part 1: \");\npart1();\nprint!(\"Part 2: \");\npart2();\n\n}}\n\nfn part1() {{\n\n}}\n\nfn part2() {{\n\n}}")
                 }
                     fs::create_dir_all(&path)
                         .expect(format!("Failed dir {}", path).as_str());
