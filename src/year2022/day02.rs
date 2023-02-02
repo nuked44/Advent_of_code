@@ -5,15 +5,15 @@ pub fn day02() {
     let _test_data = vec!["A Y", "B X", "C Z"];
 
     print!("Part 1: ");
-    part1();
+    part1(read_file_lines("./src/year2022/input/day02.txt"));
     print!("\nPart 2: ");
-    part2();
+    part2(read_file_lines("./src/year2022/input/day02.txt"));
 }
 
-fn part1() {
+fn part1(input: Vec<String>) {
     let mut points_total: usize = 0;
 
-    for i in read_file_lines("./src/year2022/day02/input.txt") {
+    for i in input {
         let fight: Vec<&str> = i.split_whitespace().collect();
         let add_choice: usize;
         let add_win: usize;
@@ -91,12 +91,12 @@ fn part1() {
     println!("{points_total}");
 }
 
-fn part2() {
+fn part2(input: Vec<String>) {
     let _test_data = vec!["A Y", "B X", "C Z"];
 
     let mut points_total: usize = 0;
 
-    for i in read_file_lines("./src/year2022/day02/input.txt") {
+    for i in input {
         let fight: Vec<&str> = i.split_whitespace().collect();
         let add_choice: usize;
         let add_win: usize;

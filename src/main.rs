@@ -24,9 +24,9 @@ fn main() {
             year2022::day01::day01,
             year2022::day02::day02,
             year2022::day03::day03,
+            year2022::day04::day04,
             /*
             Also change year2022/mod.rs
-            year2022::day04::day04,
             year2022::day05::day05,
             year2022::day06::day06,
             year2022::day07::day07,
@@ -69,8 +69,8 @@ fn main() {
                     format!("pub fn day{i}() {{\n\nprint!(\"Part 1: \");\npart1();\nprint!(\"Part 2: \");\npart2();\n\n}}\n\nfn part1() {{\n\n}}\n\nfn part2() {{\n\n}}")
                 };
                 fs::create_dir_all(&path).unwrap_or_else(|_| panic!("Failed dir {path}"));
-                let mut file: fs::File = fs::File::create(fpath.to_string())
-                    .unwrap_or_else(|_| panic!("Failed file {path}"));
+                let mut file: fs::File =
+                    fs::File::create(&fpath).unwrap_or_else(|_| panic!("Failed file {path}"));
                 write!(&mut file, "{finput}").unwrap_or_else(|_| panic!("Failed finput {path}"));
             }
         } else {

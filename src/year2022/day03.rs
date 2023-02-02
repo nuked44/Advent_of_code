@@ -11,9 +11,9 @@ pub fn day03() {
     ];
 
     print!("Part 1: ");
-    part1(read_file_lines("./src/year2022/day03/input.txt"));
+    part1(read_file_lines("./src/year2022/input/day03.txt"));
     print!("\nPart 2: ");
-    part2(read_file_lines("./src/year2022/day03/input.txt"));
+    part2(read_file_lines("./src/year2022/input/day03.txt"));
 }
 
 fn char_to_val(c: char) -> usize {

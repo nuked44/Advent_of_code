@@ -11,7 +11,7 @@ pub fn day01() {
     let mut max1: usize = 0;
     let mut max2: usize = 0;
     let mut max3: usize = 0;
-    for elf in read_file_lines("./src/year2022/day01/input.txt") {
+    for elf in read_file_lines("./src/year2022/input/day01.txt") {
         if !elf.is_empty() {
             current += elf.parse::<usize>().unwrap()
         } else {
