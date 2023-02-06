@@ -1,7 +1,6 @@
 use advent_of_code::read_file_lines;
 
 pub fn day06() {
-
     let _test_data = vec![
         "mjqjpqmgbljsphdztnvjfqwrcgsmlb".to_owned(),
         "bvwbjplbgvbhsrlpgdmjqwftvncz".to_owned(),
@@ -14,7 +13,6 @@ pub fn day06() {
     part1(read_file_lines("./src/year2022/inputs/day06.txt"));
     print!("Part 2: ");
     part2(read_file_lines("./src/year2022/inputs/day06.txt"));
-
 }
 
 struct PacketStack {
@@ -24,7 +22,10 @@ struct PacketStack {
 
 impl PacketStack {
     fn new() -> PacketStack {
-        PacketStack { size: 0, data: [' '; 4] }
+        PacketStack {
+            size: 0,
+            data: [' '; 4],
+        }
     }
 
     fn push(&mut self, value: char) {
@@ -58,7 +59,10 @@ struct MessageStack {
 
 impl MessageStack {
     fn new() -> MessageStack {
-        MessageStack { size: 0, data: [' '; 14] }
+        MessageStack {
+            size: 0,
+            data: [' '; 14],
+        }
     }
 
     fn push(&mut self, value: char) {
